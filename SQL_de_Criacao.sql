@@ -59,3 +59,61 @@ CREATE TABLE Reserva_Vaga (
     FOREIGN KEY (id_vaga)
     REFERENCES Vaga(id_vaga)
 );
+
+INSERT INTO Cliente (nome,cpf,email,telefone)
+VALUES
+('João Silva','12345678901','joao@gmail.com','(21)99999-1111'),
+('Maria Oliveira','23456789012','maria@gmail.com','(21)99999-2222'),
+('Carlos Souza','34567890123','carlos@gmail.com','(21)99999-3333');
+
+INSERT INTO Quarto (numero,capacidade,possui_banheiro)
+VALUES
+(101,4,TRUE),
+(102,8,FALSE),
+(103,12,TRUE);
+
+INSERT INTO Vaga
+(id_quarto,numero_vaga,tipo_cama,posicao,perto_porta,perto_janela,sol_manha,observacoes)
+
+VALUES
+
+(1,1,'Beliche','Superior',FALSE,TRUE,TRUE,'Vista para jardim'),
+(1,2,'Beliche','Inferior',TRUE,FALSE,FALSE,'Próxima ao banheiro'),
+(1,3,'Beliche','Superior',FALSE,FALSE,FALSE,'Silenciosa'),
+(1,4,'Beliche','Inferior',FALSE,TRUE,TRUE,'Próxima à tomada'),
+
+(2,1,'Beliche','Superior',TRUE,FALSE,FALSE,NULL),
+(2,2,'Beliche','Inferior',TRUE,FALSE,FALSE,NULL),
+(2,3,'Beliche','Superior',FALSE,TRUE,TRUE,NULL),
+(2,4,'Beliche','Inferior',FALSE,TRUE,TRUE,NULL),
+
+(3,1,'Beliche','Superior',FALSE,TRUE,TRUE,NULL),
+(3,2,'Beliche','Inferior',FALSE,TRUE,TRUE,NULL),
+(3,3,'Beliche','Superior',FALSE,FALSE,FALSE,NULL),
+(3,4,'Beliche','Inferior',TRUE,FALSE,FALSE,NULL);
+
+INSERT INTO Reserva
+(id_cliente,data_reserva,data_inicio,data_fim,valor_total,status_reserva,status_pagamento,codigo_transacao)
+
+VALUES
+
+(1,'2026-07-01','2026-07-10','2026-07-15',500.00,'Confirmada','Pago','TRX001'),
+
+(2,'2026-07-02','2026-07-20','2026-07-25',600.00,'Confirmada','Pago','TRX002');
+
+SELECT * FROM Cliente;
+
+SELECT * FROM Quarto;
+
+SELECT * FROM Vaga;
+
+SELECT * FROM Reserva;
+
+SELECT * FROM Reserva_Vaga;
+
+UPDATE Reserva
+SET status_reserva='Cancelada'
+WHERE id_reserva=1;
+
+DELETE FROM Reserva
+WHERE id_reserva=2;
