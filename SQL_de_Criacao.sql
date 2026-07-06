@@ -115,5 +115,8 @@ UPDATE Reserva
 SET status_reserva='Cancelada'
 WHERE id_reserva=1;
 
+DELETE FROM Reserva_Vaga
+WHERE id_reserva=2;
+
 DELETE FROM Reserva
 WHERE id_reserva=2;
