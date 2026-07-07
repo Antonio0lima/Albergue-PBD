@@ -10,20 +10,29 @@ SELECT
     V.perto_janela,
     V.sol_manha,
     V.observacoes
+
 FROM Vaga V
-JOIN Quarto Q
-ON V.id_quarto = Q.id_quarto
-WHERE V.id_vaga NOT IN (
 
-    SELECT RV.id_vaga
+INNER JOIN Quarto Q
+ON Q.id_quarto = V.id_quarto
+
+WHERE NOT EXISTS (
+
+    SELECT 1
+
     FROM Reserva_Vaga RV
-    JOIN Reserva R
-    ON RV.id_reserva = R.id_reserva
-    WHERE
-        R.data_inicio < '2026-07-15'
-        AND R.data_fim > '2026-07-10'
-);
 
+    INNER JOIN Reserva R
+        ON R.id_reserva = RV.id_reserva
+
+    WHERE
+        RV.id_vaga = V.id_vaga
+        AND
+        R.data_inicio < '2026-07-15'
+        AND
+        R.data_fim > '2026-07-10'
+
+);
 
 INSERT INTO Reserva
 (
